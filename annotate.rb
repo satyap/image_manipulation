@@ -8,9 +8,10 @@ class ImageAnnotate
     @text = nil
     @input = nil
     @output = nil
-    @size = 20
+    @size = 24
     @orientation = 'top-left-horizontal'
   end
+
   def cmd_line
     opts = GetoptLong.new(
       ['--text', '-t', GetoptLong::REQUIRED_ARGUMENT],
@@ -82,6 +83,8 @@ class ImageAnnotate
       vgeometry='+30'
     when 'bottom'
       vgeometry = %Q[+#{edge_distance(rotate, 'h') - 30}]
+    when 'middle'
+      vgeometry = %Q[+#{edge_distance(rotate, 'h')/2}]
     end
 
     case horizontal
@@ -89,6 +92,8 @@ class ImageAnnotate
       hgeometry='+30'
     when 'right'
       hgeometry = %Q[+#{edge_distance(rotate, 'w') - 30}]
+    when 'middle'
+      hgeometry = %Q[+#{edge_distance(rotate, 'w')/2}]
     end
 
     return <<-COV.gsub(/\n/, ' ')
