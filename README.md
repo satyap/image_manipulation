@@ -12,6 +12,21 @@ How
 
 ruby annotate.rb -t "title/text of image" -i input\_file.jpg -o output\_file.jpg
 
+Bottom right vertical placement of the text:
+ruby annotate.rb -t "title/text of image" -i input\_file.jpg -o output\_file.jpg -d bottom-right-vertical
+
+-d takes 3 words joined by dashes. The first position is top or bottom, the next is left or right, and the last is the orientation: horizontal or vertical. Examples:
+
+top-left-horizontal
+top-left-vertical
+top-right-horizontal
+top-right-vertical
+bottom-left-horizontal
+bottom-left-vertical
+bottom-right-horizontal
+bottom-right-vertical
+
+
 Why
 ---
 
