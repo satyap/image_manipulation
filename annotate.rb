@@ -9,7 +9,9 @@ class ImageAnnotate
     @input = nil
     @output = nil
     @size = 24
+    @border = 30
     @orientation = 'top-left-horizontal'
+    @verbose = false
   end
 
   def cmd_line
@@ -18,7 +20,9 @@ class ImageAnnotate
       ['--inputfile', '-i', GetoptLong::REQUIRED_ARGUMENT],
       ['--outputfile', '-o', GetoptLong::REQUIRED_ARGUMENT],
       ['--textsize', '-s', GetoptLong::REQUIRED_ARGUMENT],
+      ['--border', '-b', GetoptLong::REQUIRED_ARGUMENT],
       ['--orientation', '-d', GetoptLong::REQUIRED_ARGUMENT],
+      ['--verbose', '-v', GetoptLong::NO_ARGUMENT],
       ['--help', '-h', GetoptLong::NO_ARGUMENT],
     )
 
@@ -32,8 +36,12 @@ class ImageAnnotate
         @output = arg
       when '--textsize'
         @size = arg
+      when '--border'
+        @border = arg.to_i
       when '--orientation'
         @orientation = arg
+      when '--verbose'
+        @verbose = true
       when '--help'
         help
         exit
@@ -45,6 +53,10 @@ class ImageAnnotate
       exit
     end
 
+    if @verbose
+        puts "#{convert} #{@input} #{@output}"
+        puts "#{exif}"
+    end
     puts `#{convert} #{@input} #{@output}`
     puts `#{exif}`
   end
@@ -80,18 +92,18 @@ class ImageAnnotate
 
     case vertical
     when 'top'
-      vgeometry='+30'
+      vgeometry = "+#{@border}"
     when 'bottom'
-      vgeometry = %Q[+#{edge_distance(rotate, 'h') - 30}]
+      vgeometry = %Q[+#{edge_distance(rotate, 'h') - @border}]
     when 'middle'
       vgeometry = %Q[+#{edge_distance(rotate, 'h')/2}]
     end
 
     case horizontal
     when 'left'
-      hgeometry='+30'
+      hgeometry = "+#{@border}"
     when 'right'
-      hgeometry = %Q[+#{edge_distance(rotate, 'w') - 30}]
+      hgeometry = %Q[+#{edge_distance(rotate, 'w') - @border}]
     when 'middle'
       hgeometry = %Q[+#{edge_distance(rotate, 'w')/2}]
     end
