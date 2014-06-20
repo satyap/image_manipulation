@@ -63,7 +63,12 @@ class ImageAnnotate
 
   def help
     puts <<-TXT
-    #{$0} -t "Text to put on image" -i inputfile -o outputfile [-s 20 -d top-horizontal]
+    #{$0} -t "Text to put on image" -i inputfile -o outputfile [-s #{@size} -d #{@orientation} -b #{@border}]
+
+-s is the font size, default #{@size}
+-b is the distance from the border in pixels, default #{@border}
+-d is the text direction, default #{@orientation}
+See the README for more information (TODO: include the README here, or something) 
     TXT
   end
 
