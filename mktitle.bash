@@ -10,7 +10,7 @@ count=0
 while [ "x${TEXT[count]}" != "x" ]
 do
     i=${TEXT[count]}
-    OFILE=`echo $i|tr -cs [a-zA-Z] _`.png
+    OFILE=`echo $i|tr -cs [a-zA-Z0-9] _`.png
     convert \
         -pointsize 36 \
         -background none \
