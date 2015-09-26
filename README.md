@@ -18,6 +18,10 @@ To add a 20-pixel border while we're at it:
 
 The original files need to be named `o_*`
 
+To add a border using imagemagick:
+
+    for r in *;do convert $r -bordercolor white -border 60x40 new_$r;done
+
 mksub.sh and mktitle.sh
 -----------------------
 
