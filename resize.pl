@@ -25,9 +25,11 @@ my $border = 0;
 # some day, this will be using GetOpt
 if($images[0] =~/^\d+$/) {
     $border = shift(@images);
+    print "border: $border\n";
 }
 
-foreach my $img (@ARGV) {
+foreach my $img (@images) {
+    print "*** image $img ***\n";
     my $new=$img;
     $new=~s/o_//;
     $p->Read($img);

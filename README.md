@@ -4,19 +4,21 @@ Image manipulation scripts
 Shell, perl, and ruby scripts to put titles on images, fix aspect ratio, and create
 title/subtitle images for use with `kdenlive` (or any non-linear video editor).
 
+Please make backup copies of your files before using these scripts.
+
 resize.pl
 ---------
+
+This will overwrite the files given to it, so make backups.
 
 I had a need to fit images into a 6x4 aspect ratio with white padding. This
 perl script does it:
 
-    resize.pl o_*.jpg
+    resize.pl *.jpg
 
 To add a 20-pixel border while we're at it:
 
-    resize.pl 20 o_*.jpg
-
-The original files need to be named `o_*`
+    resize.pl 20 *.jpg
 
 To add a border using imagemagick:
 
