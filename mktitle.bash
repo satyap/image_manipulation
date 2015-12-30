@@ -13,7 +13,7 @@ do
     OFILE=`echo $i|tr -cs [a-zA-Z0-9] _`.png
     convert \
         -pointsize 36 \
-        -background none \
+        -background black \
         -fill white \
         -font Times-New-Roman-Bold \
         -strokewidth 0 \
@@ -26,7 +26,7 @@ done
 
 convert \
     -size $SIZE \
-    gradient:none-none \
+    gradient:black-black \
     _$OUTFILE
 
 convert -gravity Center -background none $FILES -append - | \
