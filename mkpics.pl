@@ -31,7 +31,8 @@ foreach my $f (@files) {
     my $file = $prefix . $shortdate . $time . '.jpg';
     #$file=~s/dscn$nomatch($nummatch).jpg/$1/i;
 
-    print "ruby ~/ruby/image_manipulation/annotate/annotate.rb -t \"$date - \" -i $f -o $file\n";
+    print "ruby ~/ruby/image_manipulation/annotate/annotate.rb \\\n";
+    print "    -t \"$date - \" \\\n    -i $f -o $file\n";
     print "bins_edit -y $date -t \"\" -d \"\" $file\n\n";
              
 }
