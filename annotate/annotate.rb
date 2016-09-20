@@ -92,11 +92,7 @@ See the README for more information (TODO: include the README here, or something
     when 'horizontal'
       rotate = ''
     when 'vertical'
-      if horizontal == 'left'
-        rotate = '-rotate 270'
-      else
-        rotate = '-rotate 90'
-      end
+      rotate = '-rotate 90'
     end
 
     case vertical

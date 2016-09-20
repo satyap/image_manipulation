@@ -35,3 +35,14 @@ mkpics.pl
 
 Uses EXIF data to create commands to annotate, and to create `bins` meta-data
 files. Uses the `annotate/annotate.rb` script.
+
+titler.rb
+---------
+
+Advanced usage.
+
+    ruby titler.rb 3 *.png
+
+Prints out title clip tags suitable for KDEnlive's saved file format. The first
+argument should be the starting numeric ID. Paste the result into the save file
+in the appropriate place.
