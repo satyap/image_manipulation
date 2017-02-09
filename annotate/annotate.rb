@@ -123,7 +123,7 @@ See the README for more information (TODO: include the README here, or something
     <<-IMG.gsub(/\n/, ' ')
     convert -density 100 -pointsize #{@size} -background '#00000099' -fill white 
     -gravity center 
-    -font Times-New-Roman-Bold 
+    -font Liberation-Serif
     label:" #{@text} " 
     -strokewidth 8 
     #{rotate}
