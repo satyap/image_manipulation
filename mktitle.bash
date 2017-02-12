@@ -15,7 +15,7 @@ do
         -pointsize 36 \
         -background black \
         -fill white \
-        -font Times-New-Roman-Bold \
+        -font Liberation-Serif \
         -strokewidth 0 \
         label:" $i " \
         miff:- | convert - $OFILE

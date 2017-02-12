@@ -14,7 +14,7 @@ convert \
     -pointsize 36 \
     -background '#00000066' \
     -fill white \
-    -font Times-New-Roman-Bold \
+    -font Liberation-Sans \
     -strokewidth 0 \
     label:" $TEXT " \
     miff:- | \
