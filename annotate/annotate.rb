@@ -89,27 +89,27 @@ See the README for more information (TODO: include the README here, or something
     vertical, horizontal, direction = @orientation.split('-')
 
     case direction
-    when 'horizontal'
+    when 'horizontal', 'h'
       rotate = ''
-    when 'vertical'
+    when 'vertical', 'v'
       rotate = '-rotate 90'
     end
 
     case vertical
-    when 'top'
+    when 'top', 't'
       vgeometry = "+#{@border}"
-    when 'bottom'
+    when 'bottom', 'b'
       vgeometry = %Q[+#{edge_distance(rotate, 'h') - @border}]
-    when 'middle'
+    when 'middle', 'm'
       vgeometry = %Q[+#{edge_distance(rotate, 'h')/2}]
     end
 
     case horizontal
-    when 'left'
+    when 'left', 'l'
       hgeometry = "+#{@border}"
-    when 'right'
+    when 'right', 'r'
       hgeometry = %Q[+#{edge_distance(rotate, 'w') - @border}]
-    when 'middle'
+    when 'middle', 'm'
       hgeometry = %Q[+#{edge_distance(rotate, 'w')/2}]
     end
 

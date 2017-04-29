@@ -20,6 +20,7 @@ ruby annotate.rb -t "title/text of image" -i input\_file.jpg -o output\_file.jpg
 
 -d takes 3 words joined by dashes. The first position is top, middle, or bottom, the next is left, middle, or right, and the last is the orientation: horizontal or vertical. Examples:
 
+```
 top-left-horizontal
 top-left-vertical
 top-right-horizontal
@@ -38,6 +39,9 @@ middle-right-horizontal
 middle-right-horizontal
 middle-middle-vertical
 middle-middle-vertical
+```
+
+You can use the first letter for the -d parameter, for example: `t-l-h` instead of `top-left-horizontal`
 
 
 Why
