@@ -10,15 +10,17 @@ Put a text and EXIF caption on images, directly on the viewable image. Control t
 How
 ---
 
-ruby annotate.rb -t "title/text of image" -i input\_file.jpg -o output\_file.jpg
+`ruby annotate.rb -t "title/text of image" -i input_file.jpg -o output_file.jpg`
 
 Bottom right vertical placement of the text:
-ruby annotate.rb -t "title/text of image" -i input\_file.jpg -o output\_file.jpg -d bottom-right-vertical
+
+`ruby annotate.rb -t "title/text of image" -i input_file.jpg -o output_file.jpg -d bottom-right-vertical`
 
 Use -s to specify the size in points:
-ruby annotate.rb -t "title/text of image" -i input\_file.jpg -o output\_file.jpg -s 30
 
--d takes 3 words joined by dashes. The first position is top, middle, or bottom, the next is left, middle, or right, and the last is the orientation: horizontal or vertical. Examples:
+`ruby annotate.rb -t "title/text of image" -i input_file.jpg -o output_file.jpg -s 30`
+
+`-d` takes 3 words joined by dashes. The first position is `top`, `middle`, or `bottom`, the next is `left`, `middle`, or `right`, and the last is the orientation: `horizontal` or `vertical`. Examples:
 
 ```
 top-left-horizontal
@@ -47,7 +49,7 @@ You can use the first letter for the -d parameter, for example: `t-l-h` instead 
 Why
 ---
 
-ImageMagick command line syntax is dense, impenetrable, and very powerful. I
+ImageMagick command line syntax is dense, impenetrable, and powerful. I
 wrote a shellscript at first, and then I wanted to do more comlpicated things
 from command-line options, so I did a Ruby script.
 
