@@ -1,9 +1,11 @@
 #!/bin/bash
 # Shell script generates images suitable for use as a title clip in kdenlive
 
+COUNTER=1
 function gen () {
 SIZE=640x480
-OUTFILE=`echo $TEXT|tr -cs [a-zA-Z] _`.png
+OUTFILE=$COUNTER`echo $TEXT|tr -cs [a-zA-Z] _`.png
+COUNTER=`expr $COUNTER + 1`
 
 convert \
     -size $SIZE \
