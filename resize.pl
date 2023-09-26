@@ -43,7 +43,7 @@ foreach my $img (@images) {
     my $xoffset = ($new_w - $w) / 2;
     my $yoffset = ($new_h - $h) / 2;
     print "$img $new $w $h -> $new_w $new_h $xoffset $yoffset\n";
-    $p->Extent('width' => $new_w, 'height' => $new_h, 'background' => 'white', 'geometry' => "${new_w}x${new_h}-${xoffset}-${yoffset}");
+    $p->Extent('width' => $new_w, 'height' => $new_h, 'background' => '#ddd', 'geometry' => "${new_w}x${new_h}-${xoffset}-${yoffset}");
     $p->Write($new);
 
 
