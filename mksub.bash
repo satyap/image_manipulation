@@ -13,7 +13,7 @@ convert \
     _$OUTFILE
 
 convert \
-    -pointsize 34 \
+    -pointsize 30 \
     -background '#00000066' \
     -fill white \
     -font Liberation-Sans \

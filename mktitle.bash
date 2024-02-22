@@ -12,7 +12,7 @@ do
     i=${TEXT[count]}
     OFILE=`echo $i|tr -cs [a-zA-Z0-9] _`.png
     convert \
-        -pointsize 36 \
+        -pointsize 32 \
         -background black \
         -fill white \
         -font Liberation-Serif \
