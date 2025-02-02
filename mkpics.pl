@@ -35,8 +35,8 @@ foreach my $f (@files) {
     print "    -t \" $date - \" \\\n    -i $f -o $file\n";
 #    print "bins_edit -y $date -t \"\" -d \"\" $file\n\n";
     print <<EOF;
-echo <<EOT > $file.xml
-    <?xml version="1.0" encoding="UTF-8"?><image><description>
+cat <<EOT > $file.xml
+<?xml version="1.0" encoding="UTF-8"?><image><description>
       <field name="description"> </field>
       <field name="title"> </field>
       <field name="date"> $date </field>
