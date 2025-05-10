@@ -8,11 +8,11 @@ use Data::Dumper;
 my @files=@ARGV;
 #my $pattern = shift(@files);
 my $prefix = shift(@files);
-my $exif = new Image::EXIF;
 #my $nomatch = '.' x (4-length($nummatch));
 #print "$nomatch, $nummatch \n";
 
 foreach my $f (@files) {
+    my $exif = new Image::EXIF; # reset EXIF
     my $time='';
     my $shortdate=$f;
     $shortdate=~s/\..*//;
@@ -20,11 +20,18 @@ foreach my $f (@files) {
     my $info = $exif->get_all_info;
     #print Dumper($info);
     my $date = $info->{'other'}->{'Image Generated'};
-#    print "$date\n";
+    unless($date) {
+      $date = $info->{'other'}->{'Image Modified'};
+    }
+    if(!$date || ($date eq '' && $f =~ /IMG-.*-WA/)) { # whatsapp image
+      my @date = (split(/-/, $f));
+      my $time = substr(@date[2], 2,4);
+      $date = "@date[1] $time";
+    }
+    #print "$date\n";
     if($date) {
         $date =~ s/://g;
         ($date,$time) = split(/\s+/, $date);
-        #print Dumper($info);
         $time=substr($time,0,4);
         $shortdate = substr($date,4);
     }
@@ -43,5 +50,5 @@ cat <<EOT > $file.xml
    </description> <bins> </bins> <exif> </exif> </image>
 EOT
 EOF
-             
+
 }
