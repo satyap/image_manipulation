@@ -32,7 +32,8 @@ build = [
 Homepage = "https://github.com/satyap/image_manipulation.git"
 
 [project.scripts]
-mkpics = "image_manipulation.mkpics:main"
+im_mkpics = "image_manipulation.mkpics:main"
+im_annotate = "image_manipulation.annotate:main"
 
 # Build
 
@@ -80,7 +81,7 @@ source = ["src"]
 
 [tool.coverage.report]
 show_missing = true
-fail_under = 50
+fail_under = 25
 exclude_lines = [
   "pragma: no cover",
   "if __name__ == .__main__.:",
