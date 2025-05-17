@@ -1,48 +1,112 @@
-Image manipulation scripts
-==========================
+# Image Manipulation Scripts
 
-Shell, perl, and ruby scripts to put titles on images, fix aspect ratio, and create
-title/subtitle images for use with `kdenlive` (or any non-linear video editor).
+A collection of Python and shell scripts for:
 
-Please make backup copies of your files before using these scripts.
+* Adding titles or descriptions to images
+* Fixing image aspect ratios for printing
+* Generating title/subtitle cards for video editors like `kdenlive`
 
-resize.pl
----------
+⚠️ Make backup copies of your images before using these scripts. Many will overwrite files.
 
-This will overwrite the files given to it, so make backups.
+## Installation
 
-I had a need to fit images into a 6x4 aspect ratio with white padding. This
-perl script does it:
+These tools use ImageMagick via its command-line interface (CLI). Make sure it’s installed and accessible via your system `PATH`.
 
-    resize.pl *.jpg
+To install the Python commands:
+```commandline
+pip install .
+```
 
-To add a 20-pixel border while we're at it:
+## Resize images to a fixed aspect ratio
 
-    resize.pl 20 *.jpg
+This tool pads images to match a target aspect ratio (default: 4x6). It overwrites files by default.
 
-To add a border using imagemagick:
+Resize all .jpg images to 6×4 (or 4×6, depending on image orientation):
 
-    for r in *;do convert $r -bordercolor white -border 60x40 new_$r;done
+```commandline
+ima-resize *.jpg
+```
 
-mksub.sh and mktitle.sh
------------------------
+Add a 20-pixel border before resizing:
+```commandline
+ima-resize -b 20 *.jpg
+```
+You can also set a different target ratio using -r:
 
-Creates a subtitle or title image that can be used with `kdenlive`. See the
-script for usage.
+```commandline
+ima-resize -r 5x7 *.jpg
+```
+Supported ratios: `4x6`, `5x7`, `8x10`, `11x14`.
 
-mkpics.pl
----------
+## Create video title and subtitle cards
 
-Uses EXIF data to create commands to annotate, and to create `bins` meta-data
-files. Uses the `annotate/annotate.rb` script.
+The shell scripts `mksub.sh` and `mktitle.sh` generate PNG title/subtitle cards for use in kdenlive or other video editors.
 
-titler.rb
----------
+Usage is built into the scripts—open them for details.
 
-Advanced usage.
+## Annotate images with text and metadata
 
-    ruby titler.rb 3 *.png
+Automatically generate `ima-annotate` commands based on image dates:
 
-Prints out title clip tags suitable for KDEnlive's saved file format. The first
-argument should be the starting numeric ID. Paste the result into the save file
-in the appropriate place.
+```bash
+ima-mkpics -p prefix *.jpg > commands.sh
+```
+
+This will:
+
+* Extract the image date from EXIF metadata or (for WhatsApp images) from the filename
+* Generate shell commands to annotate each image and optionally create XML metadata
+* Output a script `t.sh` that you can edit and run
+
+To apply annotations:
+
+```commandline
+sh commands.sh
+```
+
+Output files are named based on the image’s timestamp and prefixed with the `-p` argument (`prefix`).
+
+Use `-x` to also generate .xml metadata files:
+
+```bash
+ima-mkpics -x -p myprefix *.jpg > commands.sh
+```
+
+See help for all options:
+
+```commandline
+ima-mkpics -h
+ima-annotate -h
+```
+
+### Annotation Position Format (`-d` flag)
+
+The `-d` (direction) flag controls text placement. It takes a hyphenated combination of:
+
+* Vertical position: top, middle, bottom
+* Horizontal position: left, middle, right
+* Orientation: horizontal, vertical
+
+Examples:
+```text
+top-left-horizontal
+top-left-vertical
+top-right-horizontal
+top-right-horizontal
+top-middle-vertical
+top-middle-vertical
+bottom-left-horizontal
+bottom-left-vertical
+bottom-right-horizontal
+bottom-right-vertical
+bottom-middle-horizontal
+bottom-middle-vertical
+middle-left-horizontal
+middle-left-vertical
+middle-right-horizontal
+middle-right-horizontal
+middle-middle-vertical
+middle-middle-vertical
+```
+
+You can abbreviate using first letters, e.g. `t-l-h` = `top-left-horizontal`.
