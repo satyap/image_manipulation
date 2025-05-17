@@ -3,6 +3,8 @@ import argparse
 import piexif
 from PIL import Image
 
+ANNOTATE_COMMAND = "ima-annotate"
+
 
 def cli_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -22,7 +24,7 @@ def annotation(file: str, prefix: str, xml: bool) -> str:
     :return:
     """
     date, newfile = new_filename(file, prefix)
-    out = f"""ruby ~/ruby/image_manipulation/annotate/annotate.rb \\
+    out = f"""{ANNOTATE_COMMAND} \\
     -t " {date} - " \\
     -i {file} -o {newfile}
 """

@@ -21,12 +21,12 @@ def exif(mocker: MockerFixture) -> MagicMock:
     return img
 
 
-annotation_without_xml = """ruby ~/ruby/image_manipulation/annotate/annotate.rb \\
+annotation_without_xml = """ima-annotate \\
     -t " 20200405 - " \\
     -i xyz.jpg -o newname
 """
 
-annotation_with_xml = """ruby ~/ruby/image_manipulation/annotate/annotate.rb \\
+annotation_with_xml = """ima-annotate \\
     -t " 20200405 - " \\
     -i xyz.jpg -o newname
 cat <<EOT > newname.xml
