@@ -3,10 +3,11 @@ import subprocess
 import sys
 from typing import Optional
 
+from image_manipulation import utils
+
 default_size = 24
 default_border = 30
 default_orientation = "top-left-horizontal"
-
 
 DIM_W = "w"
 
@@ -42,10 +43,11 @@ class ImageAnnotate:
         :param stdin: Optional text blob whose size is wanted.
         :return: The required dimension size in pixels.
         """
-        if not file:
-            file = "-"
-        result = subprocess.run(["identify", "-format", f"%{dim}", file], input=stdin, capture_output=True, check=True)
-        return int(result.stdout.decode().strip())
+        w, h = utils.image_dimensions(file, stdin)
+        if dim == DIM_W:
+            return w
+        else:
+            return h
 
     def edge_distance(self, label: bytes, dim: str) -> int:
         """

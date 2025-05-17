@@ -34,6 +34,7 @@ Homepage = "https://github.com/satyap/image_manipulation.git"
 [project.scripts]
 im_mkpics = "image_manipulation.mkpics:main"
 im_annotate = "image_manipulation.annotate:main"
+im_resize = "image_manipulation.resize:main"
 
 # Build
 

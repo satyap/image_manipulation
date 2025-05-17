@@ -1,5 +1,5 @@
 import argparse
-from typing import Optional
+from typing import Optional, Tuple
 from unittest.mock import call, MagicMock
 
 import pytest
@@ -28,8 +28,8 @@ def mock_subprocess(mocker: MockerFixture) -> MagicMock:
 
 
 @pytest.fixture
-def mock_image_dimension(annotate: ImageAnnotate, mocker: MockerFixture) -> MagicMock:
-    return mocker.patch.object(annotate, "image_dimension")
+def mock_image_dimension(mocker: MockerFixture) -> MagicMock:
+    return mocker.patch("image_manipulation.annotate.utils.image_dimensions")
 
 
 def test_labelimg(annotate: ImageAnnotate, mock_subprocess: MagicMock) -> None:
@@ -77,15 +77,15 @@ def test_labelimg(annotate: ImageAnnotate, mock_subprocess: MagicMock) -> None:
 def test_composite_cmd(
     annotate: ImageAnnotate, mock_image_dimension: MagicMock, orientation: str, expected_geometry: str
 ) -> None:
-    def dimension(dim: str, file: str | None = None, stdin: Optional[bytes] = None) -> int:
+    def dimension(file: str | None = None, _stdin: Optional[bytes] = None) -> Tuple[int, int]:
         if not file:
             # simulate label rotation, which happens when label is generated.
             if orientation.endswith("h") or orientation.endswith("horizontal"):
-                return {"h": 50, "w": 60}[dim]
+                return 60, 50
             else:
-                return {"h": 60, "w": 50}[dim]
+                return 50, 60
         elif file == "my_input":
-            return {"h": 200, "w": 300}[dim]
+            return 300, 200
         else:
             raise RuntimeError(f"wrong file param {repr(file)}")
 
