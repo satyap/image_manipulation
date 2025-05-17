@@ -1,9 +1,9 @@
 # General
 
 [project]
-name = "image_manipulation"
+name = "photo_annotate"
 version = "0.1.0"
-description = "A short description of your package."
+description = "Annotate images with text and resize for printing."
 readme = "README.md"
 license-files = [ "LICENSE", "LICENSE-human.txt" ]
 authors = [
@@ -32,9 +32,9 @@ build = [
 Homepage = "https://github.com/satyap/image_manipulation.git"
 
 [project.scripts]
-im_mkpics = "image_manipulation.mkpics:main"
-im_annotate = "image_manipulation.annotate:main"
-im_resize = "image_manipulation.resize:main"
+ima-mkpics = "image_manipulation.mkpics:main"
+ima-annotate = "image_manipulation.annotate:main"
+ima-resize = "image_manipulation.resize:main"
 
 # Build
 
