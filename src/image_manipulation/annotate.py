@@ -138,7 +138,10 @@ def main() -> None:
         "-b", "--border", type=int, default=30, help=f"Border size in pixels (default: {default_border})"
     )
     parser.add_argument(
-        "-d", "--orientation", default=default_orientation, help=f"Orientation (default: {default_orientation})"
+        "-d",
+        "--orientation",
+        default=default_orientation,
+        help=f"Orientation (default: {default_orientation}, see README for more options)",
     )
     parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose output")
 
