@@ -5,6 +5,7 @@ A collection of Python and shell scripts for:
 * Adding titles or descriptions to images
 * Fixing image aspect ratios for printing
 * Generating title/subtitle cards for video editors like `kdenlive`
+* Generating an image thumbnail gallery
 
 ⚠️ Make backup copies of your images before using these scripts. Many will overwrite files.
 
@@ -110,3 +111,47 @@ middle-middle-vertical
 ```
 
 You can abbreviate using first letters, e.g. `t-l-h` = `top-left-horizontal`.
+
+## Generate HTML thumbnail gallery
+
+The `ima-showth` tool scans the current directory for `.jpg` images and generates a simple paginated HTML gallery with thumbnails.
+
+Thumbnails are created using **ImageMagick** (`convert`) and stored in a `th/` subdirectory. Each HTML page shows up to 12 images with navigation links between pages.
+
+    showth.py [linktoparent]
+
+### Arguments
+
+* `linktoparent`: Optional. If nonzero, the “Up one level” link points to the parent folder’s `index.html`.
+
+### Behavior
+
+* Processes all `.jpg` (case-insensitive) files in the current directory, skipping any that already end with `.th.jpg`.
+* Generates thumbnails (`th/filename.th.jpg`) resized to 160×120 pixels. Thumbnail conversions run in parallel for speed.
+* Creates paginated HTML files: `index.html`, `index2.html`, `index3.html`, etc.
+* Each page links to previous and next pages for browsing.
+* The navigation arrow images (`ar_l.png` and `ar_r.png`) are not created by the script — you’ll need to provide them yourself.
+
+The HTML template is defined in a file `tmpl.html`, which uses **Jinja2** syntax.
+You can modify the template’s CSS and layout as desired.
+An example template is included.
+
+Place the `tmpl.html` in the same folder as your images.
+
+### Requirements
+
+* Python 3.8+
+* [Jinja2](https://palletsprojects.com/p/jinja/)
+* [ImageMagick](https://imagemagick.org) CLI (`convert` must be in your `PATH`)
+
+Install dependencies (if needed):
+
+    pip install jinja2
+
+Example usage:
+
+    # Create a thumbnail gallery in the current folder
+    ima-showth
+
+    # Same, but with a parent directory link
+    ima-showth 1

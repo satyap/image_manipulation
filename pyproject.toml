@@ -2,8 +2,8 @@
 
 [project]
 name = "photo_annotate"
-version = "0.1.0"
-description = "Annotate images with text and resize for printing."
+version = "0.2.0"
+description = "Annotate images with text and resize for printing. Makes albums."
 readme = "README.md"
 license-files = [ "LICENSE", "LICENSE-human.txt" ]
 authors = [
@@ -11,6 +11,7 @@ authors = [
 ]
 requires-python = ">=3.10"
 dependencies = [
+  "jinja2",
   "piexif",
   "Pillow",
 ]
@@ -35,6 +36,7 @@ Homepage = "https://github.com/satyap/image_manipulation.git"
 ima-mkpics = "image_manipulation.mkpics:main"
 ima-annotate = "image_manipulation.annotate:main"
 ima-resize = "image_manipulation.resize:main"
+ima-showth = "image_manipulation.showth:main"
 
 # Build
 
@@ -48,6 +50,10 @@ package-dir = { "" = "src" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+# Tell setuptools to include non-code resourecs.
+"image_manipulation" = ["tmpl.html"]
 
 # Tools
 
